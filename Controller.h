@@ -46,9 +46,9 @@ public:
             in >> data.date;
             in >> data.workCnt;
             if (!act)
-                list.PushFront(data);
+                list.push_front(data);
             else
-                list.PushBack(data);
+                list.push_back(data);
         }
         return true;
     }
@@ -69,9 +69,9 @@ public:
             InputValue(data.workCnt, "Введите количество выполненных работ");
 
             if (act == 0)
-                list.PushFront(data);
+                list.push_front(data);
             else
-                list.PushBack(data);
+                list.push_back(data);
         }
     }
     void SortData() {
@@ -80,21 +80,21 @@ public:
         switch (act) {
         case 0:
             {
-                list.Sort([](const Data& l, const Data& r) {
+                list.sort([](const Data& l, const Data& r) {
                         return l.firmName > r.firmName;
                     });
             }
             break;
         case 1:
             {
-                list.Sort([](const Data& l, const Data& r) {
+                list.sort([](const Data& l, const Data& r) {
                         return l.workType > r.workType;
                     });
             }
             break;
         default:
             {
-                list.Sort([](const Data& l, const Data& r) {
+                list.sort([](const Data& l, const Data& r) {
                         return l.date > r.date;
                     });
             }
@@ -111,11 +111,11 @@ public:
     }
     void PrintList() {
         Print("Вывод информации из списка.");
-        list.BeginRead();
+        list.beginRead();
         do {
             Print();
-            PrintData(list.GetCurData());
-        } while (list.NextData());
+            PrintData(list.getCurData());
+        } while (list.nextData());
         Print();
     }
     void SearchDataFromConsole() {
@@ -128,7 +128,7 @@ public:
         {
             string firmName;
             InputValue(firmName, "Введите название фирмы.");
-            auto pair = list.Search([&firmName](const Data& item){
+            auto pair = list.search([&firmName](const Data& item){
                     return item.firmName == firmName;
                 });
             PrintOptionalData(pair);
@@ -138,7 +138,7 @@ public:
         {
             string workType;
             InputValue(workType, "Введите вид работ.");
-            auto pair = list.Search([&workType](const Data& item) {
+            auto pair = list.search([&workType](const Data& item) {
                 return item.workType == workType;
                 });
             PrintOptionalData(pair);
@@ -148,7 +148,7 @@ public:
         {
             string date;
             InputValue(date, "Введите дату исполнения.");
-            auto pair = list.Search([&date](const Data& item) {
+            auto pair = list.search([&date](const Data& item) {
                 return item.date == date;
                 });
             PrintOptionalData(pair);
