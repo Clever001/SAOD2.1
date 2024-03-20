@@ -75,16 +75,6 @@ public:
         }
         ++_size;
     }
-    /*
-    Data& operator [] (size_t index) {
-        if (index >= _size)
-            throw exception("Wrong index!");
-        Node* cur = head;
-        for (; index != 0; --index)
-            cur = cur->next;
-        return cur->data;
-    }
-    */
     void pop_front() {
         if (!empty()) {
             Node* tmp = head->next;
@@ -101,6 +91,7 @@ public:
             vec.push_back(cur->data);
         return vec;
     }
+    // ----- Методы, служащие для обхода списка
     void beginRead() {
         _cur = head;
     }
@@ -118,6 +109,7 @@ public:
     Data getCurData() const {
         return _cur->data;
     }
+
     ~LinkedList() {
         for (; head != nullptr; pop_front());
     }

@@ -10,7 +10,7 @@
 #include <windows.h>
 #include <stdlib.h>
 #include <vector> // Нужен для более простого вывода списка в консоль
-#include "Controller.h"
+#include "LinkedList.h"
 #define READ_DATA(dataField, width) \
     if ((in >> setw(width) >> dataField).fail()) exitWithFailure();
 
@@ -69,7 +69,7 @@ int main()
         exit(EXIT_FAILURE);
     }
     cout << "Происходит ввод данных с файла.\n";
-    int cnt, act;
+    int cnt, act; // cnt - количество элементов в списке; при act = 1 - добавление в конец, иначе (при 0) в начало.
     if ((in >> cnt >> act).fail()) exitWithFailure();
     for (; cnt > 0; --cnt) {
         Data data;
